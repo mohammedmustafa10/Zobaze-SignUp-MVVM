@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.SignUpScreen"
+    android:orientation="vertical"
+    android:layout_margin="5dp">
+
+<ImageView
+    android:id="@+id/zobazeLogo"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:src="@drawable/zobaze"
+    android:layout_gravity="center"
+
+    />
+
+
+        <TextView
+
+            android:text="Sign-Up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:layout_margin="10sp"
+            android:textColor="@color/primaryZ"
+            />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeColor="@android:color/transparent"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_margin="15dp">
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/firstName"
+                        android:hint="Enter Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_margin="15dp">
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/email"
+                        android:hint="Email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_margin="15dp">
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/password"
+                        android:hint="Password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/btn_signUp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:text="NEXT"
+            android:textSize="18dp"
+            android:backgroundTint="@color/primaryZ"
+            android:layout_margin="5sp"
+            android:layout_gravity="center"
+            />
+
+    <TextView
+        android:text="Or"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/loginButtonMainScreen"
+        android:text="Login"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/primaryZ"
+        android:backgroundTint="@color/white"
+        android:layout_gravity="center"
+
+
+        />
+
+    </LinearLayout>

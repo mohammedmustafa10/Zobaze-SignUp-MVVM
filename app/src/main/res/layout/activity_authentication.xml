@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.AuthenticationActivity"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <TextView
+
+        android:text="Check the Mail for Verification Link and then Login Here"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/primaryZ"
+        android:layout_marginBottom="40dp"
+
+
+        />
+
+
+
+    <Button
+        android:id="@+id/btn_GoToLogin"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Login"
+        android:textSize="18dp"
+        android:backgroundTint="@color/primaryZ"
+        android:layout_margin="20sp"
+        android:layout_gravity="center"
+        />
+
+
+</LinearLayout>

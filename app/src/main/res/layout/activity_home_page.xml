@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.HomePageActivity"
+    android:orientation="vertical"
+    android:layout_margin="20sp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Zobaze,"
+        android:textColor="@color/primaryZ"
+        android:textSize="40sp"
+        />
+
+    <TextView
+        android:id="@+id/userName"
+        android:text="Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:textSize="45sp"
+        android:layout_marginBottom="45dp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/logoutBtn"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:text="Logout"
+
+        />
+
+</LinearLayout>
