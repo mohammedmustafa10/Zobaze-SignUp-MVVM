@@ -1,0 +1,138 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/otpenterlogo"
+        android:layout_marginBottom="50dp"
+        />
+
+    <TextView
+        android:text="Enter OTP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:layout_margin="20dp"
+        android:textColor="@color/primaryZ"
+        android:textStyle="bold"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/otpDigit1EditText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/otp_input_box"
+            android:textCursorDrawable="@null" />
+
+        <EditText
+            android:id="@+id/otpDigit2EditText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/otp_input_box"
+            android:textCursorDrawable="@null"
+            android:layout_marginStart="8dp" />
+
+        <EditText
+            android:id="@+id/otpDigit3EditText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/otp_input_box"
+            android:textCursorDrawable="@null"
+            android:layout_marginStart="8dp" />
+
+        <EditText
+            android:id="@+id/otpDigit4EditText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/otp_input_box"
+            android:textCursorDrawable="@null"
+            android:layout_marginStart="8dp" />
+
+        <EditText
+            android:id="@+id/otpDigit5EditText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/otp_input_box"
+            android:textCursorDrawable="@null"
+            android:layout_marginStart="8dp" />
+
+        <EditText
+            android:id="@+id/otpDigit6EditText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/otp_input_box"
+            android:textCursorDrawable="@null"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="10dp"
+            />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/resendOtpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend OTP"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:visibility="invisible"
+        />
+
+    <Button
+        android:id="@+id/verifyOtpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verify OTP"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        />
+
+</LinearLayout>

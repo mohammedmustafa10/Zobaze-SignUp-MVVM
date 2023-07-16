@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Zobaze Login Page using MVVM</string>
+    <string name="default_web_client_id">942145632819-uhm1sdp97tjj8atntoqic5dl6n2l5mvd.apps.googleusercontent.com</string>
+
 </resources>

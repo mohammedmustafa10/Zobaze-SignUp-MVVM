@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseUser
 import android.util.Patterns
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.zobazeloginpageusingmvvm.R
 import com.example.zobazeloginpageusingmvvm.viewmodel.SignUpViewModel
@@ -24,18 +25,21 @@ class SignUpScreen : AppCompatActivity() {
     private lateinit var signUpButton: Button
     private lateinit var loginButtonMainScreen:Button
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_sign_up)
 
         signUpViewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
         signUpViewModel.initializeFirebaseAuth()
 
-        //auth =FirebaseAuth.getInstance()
+
         signUpButton=findViewById(R.id.btn_signUp)
         emailTv=findViewById(R.id.email)
         passwordTv=findViewById(R.id.password)
         loginButtonMainScreen=findViewById(R.id.loginButtonMainScreen)
+
+
 
         loginButtonMainScreen.setOnClickListener{
 
@@ -68,52 +72,21 @@ class SignUpScreen : AppCompatActivity() {
                         else{
                             Toast.makeText(
                                 baseContext,
-                                "Authentication failed.",
+                                "Authentication failed. ",
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
-
-
                     }
-
-                   /* auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(this) { task ->
-                            if (task.isSuccessful) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "createUserWithEmail:success")
-                                val user = auth.currentUser
-                                sendVerificationEmail()
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                                Toast.makeText(
-                                    baseContext,
-                                    "Authentication failed.",
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-                                //updateUI(null)
-                            }
-                        }*/
                 }
-
-
-                else{
-
-                    Toast.makeText(this,"Please fill all the fields",Toast.LENGTH_SHORT).show()
+                else {
+                    Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-
             }
-
             else{
-
                 Toast.makeText(this,"Please enter a valid email",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-
-
-
         }
     }
 
@@ -143,12 +116,5 @@ class SignUpScreen : AppCompatActivity() {
     }
 
 
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = signUpViewModel.firebaseAuth.currentUser
-        if (currentUser != null) {
-            updateUI(currentUser)
-        }
-    }
+
 }

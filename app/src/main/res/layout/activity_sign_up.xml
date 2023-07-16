@@ -110,7 +110,7 @@
             android:id="@+id/btn_signUp"
             android:layout_width="300dp"
             android:layout_height="60dp"
-            android:text="NEXT"
+            android:text="Sign Up"
             android:textSize="18dp"
             android:backgroundTint="@color/primaryZ"
             android:layout_margin="5sp"

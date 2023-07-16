@@ -9,12 +9,13 @@
     android:layout_margin="5dp">
 
 
+
+
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/zobaze"
             android:layout_gravity="center"
-
             />
 
 
@@ -39,6 +40,14 @@
             app:strokeColor="@android:color/transparent"
             android:backgroundTint="@color/white"
             >
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,11 +102,86 @@
             android:id="@+id/btn_Login"
             android:layout_width="300dp"
             android:layout_height="60dp"
-            android:text="NEXT"
+            android:text="Login"
             android:textSize="18dp"
             android:backgroundTint="@color/primaryZ"
             android:layout_margin="5sp"
             android:layout_gravity="center"
             />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? "
+            android:gravity="center_vertical"
+
+            />
+
+        <TextView
+            android:id="@+id/signUpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/primaryZ"
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:text="Or"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue with"
+        android:layout_gravity="center"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/GoogleOneTapButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/googlelogo"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            />
+
+        <ImageButton
+            android:id="@+id/CallButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/phone_logo"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+
+
+
 
     </LinearLayout>

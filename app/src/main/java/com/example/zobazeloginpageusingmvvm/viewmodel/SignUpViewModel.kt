@@ -1,6 +1,7 @@
 package com.example.zobazeloginpageusingmvvm.viewmodel
 
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
@@ -22,9 +23,17 @@ class SignUpViewModel : ViewModel() {
         val createUserSuccessLiveData = MutableLiveData<Boolean>()
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                createUserSuccessLiveData.value = task.isSuccessful
+                if (task.isSuccessful){
+                    createUserSuccessLiveData.value = task.isSuccessful
+                }
+                else{
+                    Log.d("AuthVerification", "signInWithCredential: ${task.exception?.message}")
+                }
+
             }
         return createUserSuccessLiveData
+
+
     }
 
 
