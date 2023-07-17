@@ -1,8 +1,11 @@
 package com.example.zobazeloginpageusingmvvm.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.zobazeloginpageusingmvvm.R
 import com.example.zobazeloginpageusingmvvm.viewmodel.PhoneAuthViewModel
-import com.google.firebase.auth.FirebaseUser
+
 
 class FragmentOTPScreen: Fragment(R.layout.fragment_otpscreen) {
     private lateinit var otpDigits: Array<EditText>
@@ -48,6 +51,9 @@ class FragmentOTPScreen: Fragment(R.layout.fragment_otpscreen) {
             view.findViewById(R.id.otpDigit5EditText),
             view.findViewById(R.id.otpDigit6EditText)
         )
+
+        addTextChangeListener()
+
 
         verifyOtpButton = view.findViewById(R.id.verifyOtpButton)
         progressBar = view.findViewById(R.id.progressBar)
@@ -102,10 +108,20 @@ class FragmentOTPScreen: Fragment(R.layout.fragment_otpscreen) {
                 resendOtpTextView.visibility= View.GONE
                 progressBar.visibility = View.GONE
 
+
+                //share the user name via the shared preferences
+                val sharedPreferences= requireActivity().getSharedPreferences("AuthPrefs", Context.MODE_PRIVATE)
+                sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
+                sharedPreferences.edit().putString("userName",name).apply()
+
+
+
+                // Save the authentication state
                 val intent = Intent(context, HomePageActivity::class.java)
                 intent.putExtra("userName", name)
                 startActivity(intent)
                 requireActivity().finish()
+
                 // OTP verification successful, proceed to the next screen
                 // Adjust the logic as per your requirement
             } else {
@@ -120,26 +136,37 @@ class FragmentOTPScreen: Fragment(R.layout.fragment_otpscreen) {
         return view
     }
 
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = authViewModel.firebaseAuth.currentUser
-        if (currentUser != null) {
-            updateUI(currentUser)
+    inner class GenericTextWatcher(private val view: View) : TextWatcher {
+        override fun afterTextChanged(editable: Editable) {
+
+            val text = editable.toString()
+            when (view.id) {
+                R.id.otpDigit1EditText -> if (text.length == 1) otpDigits[1].requestFocus() else if (text.isEmpty()) otpDigits[0].requestFocus()
+                R.id.otpDigit2EditText -> if (text.length == 1) otpDigits[2].requestFocus() else if (text.isEmpty()) otpDigits[1].requestFocus()
+                R.id.otpDigit3EditText -> if (text.length == 1) otpDigits[3].requestFocus() else if (text.isEmpty()) otpDigits[2].requestFocus()
+                R.id.otpDigit4EditText -> if (text.length == 1) otpDigits[4].requestFocus() else if (text.isEmpty()) otpDigits[3].requestFocus()
+                R.id.otpDigit5EditText -> if (text.length == 1) otpDigits[5].requestFocus() else if (text.isEmpty()) otpDigits[4].requestFocus()
+                R.id.otpDigit6EditText -> if (text.length == 1) otpDigits[5].clearFocus() else if (text.isEmpty()) otpDigits[5].requestFocus()
+            }
+        }
+
+        override fun beforeTextChanged(arg0: CharSequence, arg1: Int, arg2: Int, arg3: Int) {
+
+        }
+
+        override fun onTextChanged(arg0: CharSequence, arg1: Int, arg2: Int, arg3: Int) {
+
+        }
+    }
+
+    private fun addTextChangeListener() {
+        for (otpDigit in otpDigits) {
+            otpDigit.addTextChangedListener(GenericTextWatcher(otpDigit))
         }
     }
 
 
-    private fun updateUI(currentUser: FirebaseUser?) {
 
-        Toast.makeText(context,"Already Logged In", Toast.LENGTH_SHORT).show()
-
-        // Navigate to the HomeScreen
-        val intent = Intent(context, HomePageActivity::class.java)
-        startActivity(intent)
-        requireActivity().finish()
-
-    }
 
 
 }

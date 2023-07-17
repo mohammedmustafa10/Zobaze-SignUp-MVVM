@@ -1,8 +1,8 @@
 package com.example.zobazeloginpageusingmvvm.view
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -13,12 +13,12 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.zobazeloginpageusingmvvm.R
 import com.example.zobazeloginpageusingmvvm.viewmodel.GoogleOneTapViewModel
 import com.example.zobazeloginpageusingmvvm.viewmodel.LoginViewModel
 import com.example.zobazeloginpageusingmvvm.viewmodel.PhoneAuthViewModel
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class LoginScreen : AppCompatActivity() {
@@ -31,8 +31,11 @@ class LoginScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseAuth.getInstance().signInAnonymously()
         setContentView(R.layout.activity_login_screen)
+
+
+
+
 
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         loginViewModel.initializeFirebaseAuth()
@@ -40,8 +43,7 @@ class LoginScreen : AppCompatActivity() {
         googleOneTapViewModel=ViewModelProvider(this)[GoogleOneTapViewModel::class.java]
 
         phoneAuthViewModel=ViewModelProvider(this)[PhoneAuthViewModel::class.java]
-        //phoneAuthViewModel=ViewModelProvider(this)[PhoneAuthViewModel::class.java]
-        //val phoneAuthCurrentUser=phoneAuthViewModel.firebaseAuth.currentUser
+
 
 
         val loginButton: Button = findViewById(R.id.btn_Login)
@@ -138,6 +140,7 @@ class LoginScreen : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
+
         val intent = Intent(this, HomePageActivity::class.java)
         intent.putExtra("userName", user?.displayName)
         Log.d("abc", user?.email.toString())
@@ -156,12 +159,17 @@ class LoginScreen : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
 
+        val sharedPreferences = getSharedPreferences("AuthPrefs", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
-        //Check if user is signed in (non-null) using PhoneNumber and update UI accordingly.
-        val phoneAuthCurrentUser=phoneAuthViewModel.firebaseAuth.currentUser
-        if (phoneAuthCurrentUser != null) {
-            updateUI(phoneAuthCurrentUser)
+        if (isLoggedIn) {
+            val intent = Intent(this, HomePageActivity::class.java)
+            val userName = sharedPreferences.getString("userName", "")
+            intent.putExtra("userName", userName)
+            startActivity(intent)
+            finish()
         }
+
 
         val currentUser = loginViewModel.auth.currentUser
         if (currentUser != null) {

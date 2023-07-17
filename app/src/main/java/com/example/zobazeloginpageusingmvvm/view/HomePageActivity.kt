@@ -1,10 +1,10 @@
 package com.example.zobazeloginpageusingmvvm.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.zobazeloginpageusingmvvm.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -38,6 +38,8 @@ class HomePageActivity : AppCompatActivity() {
 
            val googleSignInClient = GoogleSignIn.getClient(this, gso)
               googleSignInClient.signOut()
+           val sharedPreferences=getSharedPreferences("AuthPrefs", MODE_PRIVATE)
+           sharedPreferences.edit().putBoolean("isLoggedIn",false).apply()
             FirebaseAuth.getInstance().signOut()
             finish()
             val intent= Intent(this,SignUpScreen::class.java)
