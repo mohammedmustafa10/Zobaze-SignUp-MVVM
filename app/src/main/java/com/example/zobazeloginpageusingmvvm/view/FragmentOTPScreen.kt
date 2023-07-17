@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.zobazeloginpageusingmvvm.R
 import com.example.zobazeloginpageusingmvvm.viewmodel.PhoneAuthViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class FragmentOTPScreen: Fragment(R.layout.fragment_otpscreen) {
@@ -39,9 +41,7 @@ class FragmentOTPScreen: Fragment(R.layout.fragment_otpscreen) {
         authViewModel.firebaseAuth
         val phoneNumber= arguments?.getString("number").toString()
         val name= arguments?.getString("name").toString()
-
-        //verificationIdOTP= intent.getStringExtra("verificationId").toString()
-
+        val firestore = FirebaseFirestore.getInstance()
 
         otpDigits = arrayOf(
             view.findViewById(R.id.otpDigit1EditText),
@@ -105,20 +105,27 @@ class FragmentOTPScreen: Fragment(R.layout.fragment_otpscreen) {
         authViewModel.otpVerificationStatus.observe(viewLifecycleOwner) { isVerified ->
             if (isVerified) {
 
-                resendOtpTextView.visibility= View.GONE
-                progressBar.visibility = View.GONE
+                val userDocRef=firestore.collection("users").document(phoneNumber)
+                userDocRef.set(mapOf("name" to name))
+                    .addOnSuccessListener {
+                    }
+                    .addOnFailureListener { e ->
+                        Log.d("Firestore", "$e")
+                    }
 
-
-                //share the user name via the shared preferences
                 val sharedPreferences= requireActivity().getSharedPreferences("AuthPrefs", Context.MODE_PRIVATE)
                 sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
                 sharedPreferences.edit().putString("userName",name).apply()
+                sharedPreferences.edit().putString("phoneNumber",phoneNumber).apply()
+                resendOtpTextView.visibility= View.GONE
+                progressBar.visibility = View.GONE
 
 
 
                 // Save the authentication state
                 val intent = Intent(context, HomePageActivity::class.java)
                 intent.putExtra("userName", name)
+                intent.putExtra("phoneNumber", phoneNumber)
                 startActivity(intent)
                 requireActivity().finish()
 

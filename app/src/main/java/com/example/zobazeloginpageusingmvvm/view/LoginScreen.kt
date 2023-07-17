@@ -161,10 +161,12 @@ class LoginScreen : AppCompatActivity() {
 
         val sharedPreferences = getSharedPreferences("AuthPrefs", Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        val phoneNumber= sharedPreferences.getString("phoneNumber", "").toString()
 
         if (isLoggedIn) {
             val intent = Intent(this, HomePageActivity::class.java)
             val userName = sharedPreferences.getString("userName", "")
+            intent.putExtra("phoneNumber", phoneNumber)
             intent.putExtra("userName", userName)
             startActivity(intent)
             finish()

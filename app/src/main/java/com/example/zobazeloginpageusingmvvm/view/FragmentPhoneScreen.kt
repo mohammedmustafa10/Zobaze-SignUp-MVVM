@@ -77,22 +77,20 @@ class FragmentPhoneScreen: Fragment(R.layout.fragment_phonescreen)
         authViewModel.otpVerificationStatus.observe(viewLifecycleOwner) { isVerified ->
             if (isVerified) {
 
-                Toast.makeText(context,"Verification Successful", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Verification Successful", Toast.LENGTH_SHORT).show()
 
-                val fragmentManager=activity?.supportFragmentManager
-                val fragmentTransaction=fragmentManager?.beginTransaction()
-                fragmentTransaction?.replace(R.id.fragmentContainer,otpFragment)
+                val fragmentManager = activity?.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.fragmentContainer, otpFragment)
                 fragmentTransaction?.commit()
 
             } else {
 
-                Toast.makeText(context,"Verification Failed Try Again", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Verification Failed Try Again", Toast.LENGTH_SHORT).show()
 
                 //Show error message in the logcat
             }
         }
-
-
         return view
     }
 
@@ -109,9 +107,8 @@ class FragmentPhoneScreen: Fragment(R.layout.fragment_phonescreen)
 
             Toast.makeText(context,"Already Logged In", Toast.LENGTH_SHORT).show()
 
-           // Navigate to the HomeScreen
-        val intent = Intent(context, HomePageActivity::class.java)
-                startActivity(intent)
+           val intent = Intent(context, HomePageActivity::class.java)
+            startActivity(intent)
             requireActivity().finish()
 
     }
